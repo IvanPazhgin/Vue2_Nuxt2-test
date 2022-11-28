@@ -1,9 +1,14 @@
 <template>
   <v-container>
+    <input
+      class="input"
+      v-model="searchQuery"
+      placeholder="Поиск..."
+    >
     <h2>Список товаров</h2>
       <v-row>
         <product-page
-          v-for="product of goods"
+          v-for="product of searchedGoods"
           :product="product">
         </product-page>
       </v-row>
@@ -26,15 +31,26 @@ export default {
   // },
 
   data: () => ({
+    searchQuery: '',
     // dialogVisible: false,
   }),
 
   computed: {
     goods() {
       return this.$store.getters["goods/goods"]
+    },
+    searchedGoods() {
+      return this.goods.filter(product => product.title.toLowerCase().includes(this.searchQuery.toLowerCase()))
     }
   },
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.input {
+  width: 100%;
+  border: 1px solid teal;
+  padding: 10px 15px;
+  margin-top: 15px;
+}
+</style>
