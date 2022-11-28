@@ -12,7 +12,18 @@
           :product="product">
         </product-page>
       </v-row>
-<!--    <product-dialog />-->
+
+    <div class="page__wrapper">
+      <div
+        v-for="pageNumber in $store.getters['goods/totalPages']"
+        :key="pageNumber"
+        class="page"
+        :class="{'current-page': pageNumber === $store.state.goods.currentPage}"
+        @click="changePage(pageNumber)"
+      >
+        {{ pageNumber }}
+      </div>
+    </div>
   </v-container>
 </template>
 
@@ -32,7 +43,6 @@ export default {
 
   data: () => ({
     searchQuery: '',
-    // dialogVisible: false,
   }),
 
   computed: {
@@ -43,6 +53,12 @@ export default {
       return this.goods.filter(product => product.title.toLowerCase().includes(this.searchQuery.toLowerCase()))
     }
   },
+  methods: {
+    async changePage(pageNumber) {
+      this.$store.commit('goods/setCurrentPage', pageNumber)
+      await this.$store.dispatch('goods/fetch')
+    }
+  }
 }
 </script>
 
@@ -51,6 +67,21 @@ export default {
   width: 100%;
   border: 1px solid teal;
   padding: 10px 15px;
+  /*margin-top: 15px;*/
+  margin-bottom: 10px;
+}
+.page__wrapper {
+  display: flex;
   margin-top: 15px;
+  flex-wrap: wrap;
+}
+.page {
+  /*border: 1px solid black;*/
+  color: blue;
+  padding: 10px;
+}
+.current-page {
+  border: 1px solid teal;
+  color: black;
 }
 </style>
