@@ -26,7 +26,6 @@ export default {
   methods: {
     openProduct(product) {
       this.$router.push('products/' + product.id)
-      // console.log('re',product.id)
     }
   },
 }
