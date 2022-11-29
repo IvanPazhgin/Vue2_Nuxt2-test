@@ -10,22 +10,22 @@
 <!--    ></b-table>-->
 
 
-    <b-pagination
-      pills
-      align="center"
-      v-model="$store.state.goods.currentPage"
-      :total-rows="$store.state.goods.amountOfGoods"
-      :per-page="$store.state.goods.limitOnPage"
-    />
-
 <!--    <b-pagination-->
 <!--      pills-->
 <!--      align="center"-->
-<!--      :value="$store.state.goods.currentPage"-->
+<!--      v-model="$store.state.goods.currentPage"-->
 <!--      :total-rows="$store.state.goods.amountOfGoods"-->
 <!--      :per-page="$store.state.goods.limitOnPage"-->
-<!--      @click="changePage(label-page)"-->
-<!--    ></b-pagination>-->
+<!--    />-->
+
+    <b-pagination
+      pills
+      align="center"
+      :value="$store.state.goods.currentPage"
+      :total-rows="$store.state.goods.amountOfGoods"
+      :per-page="$store.state.goods.limitOnPage"
+      @input="changePage"
+    ></b-pagination>
 
   </div>
 </template>
@@ -34,9 +34,10 @@
 export default {
   name: "Pagination",
   methods: {
-    async changePage(pageNumber) {
-      this.$store.commit('goods/setCurrentPage', pageNumber)
+    async changePage(event) {
+      this.$store.commit('goods/setCurrentPage', event)
       await this.$store.dispatch('goods/fetch')
+      // console.log(event)
     },
   }
 }

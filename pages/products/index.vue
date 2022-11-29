@@ -20,19 +20,19 @@
         </product-page>
     </div>
 
-<!--    <Pagination></Pagination>-->
+    <Pagination></Pagination>
 
-    <div class="page__wrapper">
-      <div
-        v-for="pageNumber in $store.getters['goods/totalPages']"
-        :key="pageNumber"
-        class="page"
-        :class="{'current-page': pageNumber === $store.state.goods.currentPage}"
-        @click="changePage(pageNumber)"
-      >
-        {{ pageNumber }}
-      </div>
-    </div>
+<!--    <div class="page__wrapper">-->
+<!--      <div-->
+<!--        v-for="pageNumber in $store.getters['goods/totalPages']"-->
+<!--        :key="pageNumber"-->
+<!--        class="page"-->
+<!--        :class="{'current-page': pageNumber === $store.state.goods.currentPage}"-->
+<!--        @click="changePage(pageNumber)"-->
+<!--      >-->
+<!--        {{ pageNumber }}-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
 </template>
 
