@@ -1,6 +1,5 @@
 <template>
   <section>
-<!--    <h1>Товар #{{ $route.params.id }}</h1>-->
     <h3> Товар: #{{product.id}} </h3>
     <h4>Наимернование: {{ product.title }}</h4>
     <h5>Стоимость: {{product.title.length}} usd </h5>

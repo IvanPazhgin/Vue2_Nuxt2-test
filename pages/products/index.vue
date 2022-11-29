@@ -1,7 +1,7 @@
 <template>
   <div>
     <input
-      class="input"
+      class="find_box"
       v-model="searchQuery"
       placeholder="Поиск..."
     >
@@ -22,17 +22,6 @@
 
     <Pagination></Pagination>
 
-<!--    <div class="page__wrapper">-->
-<!--      <div-->
-<!--        v-for="pageNumber in $store.getters['goods/totalPages']"-->
-<!--        :key="pageNumber"-->
-<!--        class="page"-->
-<!--        :class="{'current-page': pageNumber === $store.state.goods.currentPage}"-->
-<!--        @click="changePage(pageNumber)"-->
-<!--      >-->
-<!--        {{ pageNumber }}-->
-<!--      </div>-->
-<!--    </div>-->
   </div>
 </template>
 
@@ -63,10 +52,6 @@ export default {
     }
   },
   methods: {
-    async changePage(pageNumber) {
-      this.$store.commit('goods/setCurrentPage', pageNumber)
-      await this.$store.dispatch('goods/fetch')
-    },
     changeView() {
       this.$store.dispatch('goods/changeView')
     }
@@ -75,44 +60,29 @@ export default {
 </script>
 
 <style scoped>
-.input {
+.find_box {
   width: 100%;
   border: 1px solid teal;
   padding: 10px 15px;
   /*margin-top: 15px;*/
   margin-bottom: 10px;
 }
-.page__wrapper {
-  display: flex;
-  margin-top: 15px;
-  flex-wrap: wrap;
-}
-.page {
-  border: 1px solid black;
-  color: blue;
-  padding: 10px;
-  cursor: pointer;
-  margin: 0.3%;
-  justify-content: space-between;
-}
-.current-page {
-  border: 1px solid teal;
-  color: red;
-  opacity: 0.7;
-}
 
 .container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  /*justify-content: space-between;*/
 
   /*flex-flow: row wrap;*/
   /*align-content: space-between;*/
   /*height: 960px;*/
+  margin-bottom: 1%;
 }
 .item {
   width: 24%;
-  margin-bottom: 5px;
+  /*margin-bottom: 5px;*/
+  margin-bottom: 1%;
+  margin-right: 1%;
   /*border: 1px solid #4290e2;*/
   box-sizing: border-box;
 }
