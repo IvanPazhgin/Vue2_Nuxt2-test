@@ -1,5 +1,4 @@
 <template>
-    <v-col cols="4">
       <v-card @click="openProduct(product)">
         <v-card-title>id #{{product.id}}: {{ product.title }}</v-card-title>
         <v-card-text>
@@ -8,10 +7,8 @@
             height="200"
             :src="product.url"
           />
-<!--        <a href="#" @click.prevent="openProduct(product)">Подробнее: #{{product.id}}</a>-->
         </v-card-text>
       </v-card>
-    </v-col>
 </template>
 
 <script>

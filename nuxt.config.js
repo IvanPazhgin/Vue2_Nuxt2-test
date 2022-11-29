@@ -37,6 +37,7 @@ export default {
   modules: [
     '@nuxtjs/axios',
     "@nuxtjs/vuetify",
+    'bootstrap-vue/nuxt',
     // '@vuetify',
   ],
 

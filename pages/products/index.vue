@@ -1,17 +1,26 @@
 <template>
-  <v-container>
+  <div>
     <input
       class="input"
       v-model="searchQuery"
       placeholder="Поиск..."
     >
     <h2>Список товаров</h2>
-      <v-row>
+    <input
+      type="checkbox"
+      @input="changeView"
+      :value="$store.state.goods.isTile"
+    > Вид элементов: плиточный / горизонтальный
+
+    <div :class="{ container: $store.state.goods.isTile}">
         <product-page
+          :class="{ item: $store.state.goods.isTile}"
           v-for="product of searchedGoods"
           :product="product">
         </product-page>
-      </v-row>
+    </div>
+
+<!--    <Pagination></Pagination>-->
 
     <div class="page__wrapper">
       <div
@@ -24,7 +33,7 @@
         {{ pageNumber }}
       </div>
     </div>
-  </v-container>
+  </div>
 </template>
 
 <script>
@@ -57,6 +66,9 @@ export default {
     async changePage(pageNumber) {
       this.$store.commit('goods/setCurrentPage', pageNumber)
       await this.$store.dispatch('goods/fetch')
+    },
+    changeView() {
+      this.$store.dispatch('goods/changeView')
     }
   }
 }
@@ -76,12 +88,32 @@ export default {
   flex-wrap: wrap;
 }
 .page {
-  /*border: 1px solid black;*/
+  border: 1px solid black;
   color: blue;
   padding: 10px;
+  cursor: pointer;
+  margin: 0.3%;
+  justify-content: space-between;
 }
 .current-page {
   border: 1px solid teal;
-  color: black;
+  color: red;
+  opacity: 0.7;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  /*flex-flow: row wrap;*/
+  /*align-content: space-between;*/
+  /*height: 960px;*/
+}
+.item {
+  width: 24%;
+  margin-bottom: 5px;
+  /*border: 1px solid #4290e2;*/
+  box-sizing: border-box;
 }
 </style>
